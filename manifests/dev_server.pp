@@ -1,6 +1,5 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
 include common::basic
 include ruby::install
 include mongodb::install
@@ -17,6 +16,12 @@ exec {'add_group_rvm_in_user_admin':
     require  => Class['common::basic']
 }
 
+exec {'change_user_pass':
+  command  => 'echo "admin:admin" | chpasswd',
+  path     => ['/bin', '/usr/sbin'],
+  require  => Class['common::basic']
+}
+
 file {'/home/admin/.bash_login':
     owner   => 'admin',
     group   => 'admin',
@@ -27,4 +32,3 @@ package { ["libqt4-dev", "libjpeg-dev", "libpng-dev", "imagemagick"]:
   ensure  => installed,
   require  => Class['common::basic']
 }
-
