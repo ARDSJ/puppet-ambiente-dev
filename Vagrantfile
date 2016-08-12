@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ")
 
   config.vm.define :dev_server do |config|
-    config.vm.synced_folder '~/workspace_rails', '/var/workspace'
+    config.vm.synced_folder '~/workspace_rails', '/var/workspace',mount_options: ["dmode=777,fmode=777"]
     config.vm.network :forwarded_port, guest: 27017, host: 27017  #mongodb
     config.vm.network :forwarded_port, guest: 3000,  host: 3000   #rails
     config.vm.network :forwarded_port, guest: 80,    host: 8080   #apache
