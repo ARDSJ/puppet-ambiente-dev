@@ -20,12 +20,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   system("
     if [ #{ARGV[0]} = 'up' ]; then
-      mkdir ./apps
+      mkdir ~/workspace_rails
     fi
   ")
 
   config.vm.define :dev_server do |config|
-    config.vm.synced_folder 'apps', '/var/apps'
+    config.vm.synced_folder '~/workspace_rails', '/var/workspace'
     config.vm.network :forwarded_port, guest: 27017, host: 27017  #mongodb
     config.vm.network :forwarded_port, guest: 3000,  host: 3000   #rails
     config.vm.network :forwarded_port, guest: 80,    host: 8080   #apache
