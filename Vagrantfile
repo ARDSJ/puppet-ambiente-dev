@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   system("
     if [ #{ARGV[0]} = 'up' ]; then
-      mkdir ~/workspace_rails
+      mkdir ~/workspace/workspace_rails
     fi
   ")
 
